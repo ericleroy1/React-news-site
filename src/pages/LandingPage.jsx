@@ -7,7 +7,7 @@ function LandingPage() {
 		<Router>
 			<div>
 				<Navbar />
-				<h1>Welcome to your news</h1>
+				<h1>Welcome to your news page - currently under development</h1>
 			</div>
 		</Router>
 	);
