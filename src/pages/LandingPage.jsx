@@ -1,16 +1,16 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import { BrowserRouter as Router } from "react-router-dom";
+import LoginForm from "../components/LoginForm";
 
 function LandingPage() {
 	return (
 		<Router>
 			<div>
-				<Navbar />
-				<h1>
-					Welcome to your news Website - it is under development and will be
-					finished soon
-				</h1>
+				<h1>Welcome to your news Website</h1>
+				<LoginForm />
+				<button>Login</button>
+				<h2>Not registered?</h2>
+				<button>Register</button>
 			</div>
 		</Router>
 	);
