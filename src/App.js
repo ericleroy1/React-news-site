@@ -7,9 +7,11 @@ import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
 import MyNewsPage from "./pages/MyNewsPage";
 
+
 let isLoggedIn = true
 
 function App() {
+
     return (
         <Router>
             <Switch>
@@ -27,6 +29,7 @@ function App() {
                 </Route>
             </Switch>
         </Router>
+
     )}
 
 export default App
