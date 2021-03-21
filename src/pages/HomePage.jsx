@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import NewsItem from "../components/NewsItem";
 
 function HomePage() {
 	const [articles, setArticles] = useState([]);
 
 	useEffect(() => {
 		fetch(
-			"https://newsapi.org/v2/everything?" +
-				"q=Apple&" +
-				"from=2021-02-28&" +
-				"sortBy=popularity&" +
+			"https://newsapi.org/v2/top-headlines?country=au&" + 
 				"apiKey=39bd2d941e0d433e8f54efdd2e183dda"
 		)
 			.then((res) => {
@@ -28,11 +26,14 @@ function HomePage() {
 			<h2>Today's top stories</h2>
 			{articles.map((article) => {
 				return (
-					<div>
-						<h1>{article.title}</h1>
-						<h3>{article.author}</h3>
-						<p>{article.content}</p>
-					</div>
+					<NewsItem
+						key={article.url}
+						image={article.urlToImage}
+						title={article.title}
+						author={article.author}
+						content={article.content}
+						url={article.url}
+					/>
 				);
 			})}
 		</div>
