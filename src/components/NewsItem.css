@@ -1,0 +1,14 @@
+.cardTop {
+    display: grid;
+    grid-template-columns: 25% 70%;
+}
+
+.cardPic {
+    width: 90%;
+    /* grid-area: 1/1/2/2; */
+}
+
+.cardTitle {
+    width: 95%;
+    /* grid-area: 1/2/2/2; */
+}

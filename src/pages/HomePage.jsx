@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import NewsItem from "../components/NewsItem";
+import Weather from "../components/Weather";
+import "../styles.css";
 
 function HomePage() {
 	const [articles, setArticles] = useState([]);
@@ -23,7 +25,8 @@ function HomePage() {
 	return (
 		<div>
 			<Navbar />
-			<h2>Today's top stories</h2>
+			<h2 className="headline">Today's top stories</h2>
+			<Weather/>
 			{articles.map((article) => {
 				return (
 					<NewsItem
