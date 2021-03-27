@@ -1,5 +1,9 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
+import firebase from "firebase";
+import { Button } from "react-bootstrap";
+
+
 import "./Navbar.css";
 
 function Navbar() {
@@ -36,9 +40,7 @@ function Navbar() {
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to='/logout' className='nav-links' onClick={closeMenu}>
-                                Logout
-                            </Link>
+                            <Button onClick={() => firebase.auth().signOut()}>Sign Out</Button>
                         </li>
                 </ul>
             </div>
