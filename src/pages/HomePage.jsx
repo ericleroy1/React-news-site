@@ -25,7 +25,7 @@ function HomePage() {
 		<div>
 			<h2 className="headline">Today's top stories</h2>
 
-			{articles.map((article) => {
+			{/* {articles.map((article) => {
 				return (
 					<NewsItem
 						key={article.url}
@@ -36,7 +36,7 @@ function HomePage() {
 						url={article.url}
 					/>
 				);
-			})}
+			})} */}
 		</div>
 	);
 }
