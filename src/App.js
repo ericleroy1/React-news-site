@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
 import MyNewsPage from "./pages/MyNewsPage";
 import Navbar from "./components/Navbar";
+import "./components/Navbar.css";
 
 
 firebase.initializeApp({
@@ -53,7 +54,7 @@ class App extends Component {
     componentDidMount = ()=>{
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user})
-            console.log(user, user.displayName);
+            console.log();
         })
 
     }
@@ -62,7 +63,11 @@ class App extends Component {
         return (
         <div>
             <Router>
-            <Navbar/>
+            {this.state.isSignedIn ? 
+            (<Navbar userNameDisplay={firebase.auth().currentUser.displayName} />)
+            :
+            (<Navbar userNameDisplay={null} />)
+            }
                 <Switch>
                     <Route exact path="/">
                         {this.state.isSignedIn ? 

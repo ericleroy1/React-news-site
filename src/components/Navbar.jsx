@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar(props) {
 
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
@@ -39,10 +39,9 @@ function Navbar() {
                                 MyNews
                             </Link>
                         </li>
-                        <li className='nav-item'>
                             <Button onClick={() => firebase.auth().signOut()}>Sign Out</Button>
-                        </li>
                 </ul>
+                <p style={{color: "white"}}>{props.userNameDisplay}</p>
             </div>
         </div>
     )
