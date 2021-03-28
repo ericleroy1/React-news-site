@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
-import LoginPage from "./pages/LoginPage";
 import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
@@ -25,23 +24,12 @@ class App extends Component {
         this.state = { apiResponse: "" };
     }
     
-    callAPI() {
-        fetch("http://localhost:9000/testAPI")
-            .then(res => res.text())
-            .then(res => this.setState({ apiResponse: res }));
-    }
-    
-    componentWillMount() {
-        this.callAPI();
-    }
-    
     state = { isSignedIn: true}
 
     uiConfig = {
         signInFlow: 'popup',
         signInSuccessUrl: '<url-to-redirect-to-on-success>',
         signInOptions: [
-          // Leave the lines as is for the providers you want to offer your users.
           firebase.auth.GoogleAuthProvider.PROVIDER_ID,
           firebase.auth.FacebookAuthProvider.PROVIDER_ID,
           firebase.auth.EmailAuthProvider.PROVIDER_ID,

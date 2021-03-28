@@ -24,7 +24,7 @@ function HomePage() {
 	return (
 		<div>
 			<h2 className="headline">Today's top stories</h2>
-			<Weather/>
+
 			{articles.map((article) => {
 				return (
 					<NewsItem

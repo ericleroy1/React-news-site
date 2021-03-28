@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
 import { Button } from "react-bootstrap";
-
+import { useHistory } from "react-router-dom";
 
 import "./Navbar.css";
 
@@ -12,6 +12,12 @@ function Navbar(props) {
     const handleClick = () => setClick(!click);
     const closeMenu = () => setClick(false);
 
+    const history = useHistory();
+
+    async function handleSignOut(){
+        await firebase.auth().signOut();
+        history.push('/')
+    }
 
     return (
         <div className='navbar'>
@@ -39,7 +45,7 @@ function Navbar(props) {
                                 MyNews
                             </Link>
                         </li>
-                            <Button onClick={() => firebase.auth().signOut()}>Sign Out</Button>
+                            <Button onClick={handleSignOut}>Sign Out</Button>
                 </ul>
                 <p style={{color: "white"}}>{props.userNameDisplay}</p>
             </div>
