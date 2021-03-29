@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 import "./Navbar.css";
+import logo from "../logo.png";
 
 function Navbar(props) {
 
@@ -23,7 +24,7 @@ function Navbar(props) {
         <div className='navbar'>
             <div className="navbar-container">
                 <Link to="/home" className="navbar-logo" onClick={closeMenu}>
-                        NEWS LOGO <i className='fab fa-typo3'/>
+                        <img src={logo} alt="logo"/>
                 </Link>
 
                 <div className='menu-icon' onClick={handleClick}>
@@ -45,7 +46,7 @@ function Navbar(props) {
                                 MyNews
                             </Link>
                         </li>
-                            <Button onClick={handleSignOut}>Sign Out</Button>
+                            <Button onClick={handleSignOut}>{props.buttonDisplay}</Button>
                 </ul>
                 <p style={{color: "white"}}>{props.userNameDisplay}</p>
             </div>

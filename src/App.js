@@ -1,10 +1,9 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import firebase from "firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
-import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
 import MyNewsPage from "./pages/MyNewsPage";
@@ -52,9 +51,14 @@ class App extends Component {
         <div>
             <Router>
             {this.state.isSignedIn ? 
-            (<Navbar userNameDisplay={firebase.auth().currentUser.displayName} />)
+            (<Navbar
+                userNameDisplay={firebase.auth().currentUser.displayName}
+                buttonDisplay="Sign Out"
+                />)
             :
-            (<Navbar userNameDisplay={null} />)
+            (<Navbar
+                userNameDisplay={null}
+                buttonDisplay="Sign In"/>)
             }
                 <Switch>
                     <Route exact path="/">

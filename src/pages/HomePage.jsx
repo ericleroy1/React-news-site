@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import NewsItem from "../components/NewsItem";
-import Weather from "../components/Weather";
 import "../styles.css";
 
 function HomePage() {
+
 	const [articles, setArticles] = useState([]);
 
 	useEffect(() => {
@@ -16,6 +16,7 @@ function HomePage() {
 			})
 			.then((data) => {
 				setArticles(data.articles);
+				console.log(data);
 			});
 	}, []);
 
@@ -25,7 +26,7 @@ function HomePage() {
 		<div>
 			<h2 className="headline">Today's top stories</h2>
 
-			{/* {articles.map((article) => {
+			{articles.map((article) => {
 				return (
 					<NewsItem
 						key={article.url}
@@ -36,7 +37,7 @@ function HomePage() {
 						url={article.url}
 					/>
 				);
-			})} */}
+			})}
 		</div>
 	);
 }
