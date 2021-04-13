@@ -1,41 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NewsItem from "../components/NewsItem";
+import "../styles.css";
 
+function SearchPage(props) {
 
-function SearchPage() {
-
-	const [articles, setArticles] = useState([]);
 	const [searchValue, setSearchValue] = useState("");
 
-	function searchArticles(event, searchValue){
-		console.log("function called");
-		console.log(searchValue);
+	const handleSearchInputChanges = (e) => {
+		setSearchValue(e.target.value);
+	};
+	
+	const resetInputField = () => {
+		setSearchValue("")
+	};
+
+	const callSearchFunction = (e) => {
+		e.preventDefault();
+		props.search(searchValue);
+		resetInputField();
+	};
+
+	const [articles, setArticles] = useState([]);
+
+	useEffect(() => {
 		fetch(
-			"https://newsapi.org/v2/top-headlines?country=au&" + 
+			"https://newsapi.org/v2/everything?qInTitle=" + searchValue +
 				"apiKey=39bd2d941e0d433e8f54efdd2e183dda"
 		)
 			.then((res) => {
-				console.log(res);
 				return res.json();
 			})
 			.then((data) => {
 				setArticles(data.articles);
 				console.log(data);
 			});
-			event.preventDefault();
-	};
+	}, []);
 
 	return (
 		<div>
-			<h2>Search for news topics here</h2>
-			<form onSubmit={searchArticles}>
+			<form className="search">
 				<input
-					type="text"
-					placeholder="search by topic..."
-					onChange={event => setSearchValue(event.target.value)}>
-				</input>
-				<button type="submit">Go</button>
-			</form>
+				value={searchValue}
+				onChange={handleSearchInputChanges}
+				type="text"
+				/>
+				<input onClick={callSearchFunction} type="submit" value="SEARCH" />
+    		</form>
 
 			{articles.map((article) => {
 				return (
@@ -50,7 +60,7 @@ function SearchPage() {
 				);
 			})}
 		</div>
-	);
+	)
 }
 
 export default SearchPage;
