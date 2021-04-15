@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import NewsItem from "../components/NewsItem";
 import "../styles.css";
 
-function SearchPage(props) {
+const SearchPage = (props) => {
 
+	const [articles, setArticles] = useState([]);
 	const [searchValue, setSearchValue] = useState("");
 
 	const handleSearchInputChanges = (e) => {
@@ -15,26 +16,41 @@ function SearchPage(props) {
 	};
 
 	const callSearchFunction = (e) => {
+		console.log("search function called");
+		console.log(searchValue);
 		e.preventDefault();
-		props.search(searchValue);
+		searchValueFunction();
 		resetInputField();
 	};
 
-	const [articles, setArticles] = useState([]);
 
-	useEffect(() => {
-		fetch(
-			"https://newsapi.org/v2/everything?qInTitle=" + searchValue +
-				"apiKey=39bd2d941e0d433e8f54efdd2e183dda"
-		)
-			.then((res) => {
-				return res.json();
-			})
-			.then((data) => {
-				setArticles(data.articles);
-				console.log(data);
-			});
-	}, []);
+
+	function searchValueFunction() {
+
+		fetch(`https://newsapi.org/v2/everything?q=${searchValue}&apiKey=39bd2d941e0d433e8f54efdd2e183dda`)
+		  .then(response => response.json())
+		  .then(jsonResponse => {
+			  console.log(jsonResponse.articles)
+			  setArticles(jsonResponse.articles)
+		  })
+		  .then(console.log(articles + " are set"))
+
+		  };
+
+	function searchArticles(){
+		fetch(`https://newsapi.org/v2/everything?q=${searchValue}&apiKey=39bd2d941e0d433e8f54efdd2e183dda`)
+				.then((res) => {
+					return res.json();
+				})
+				.then((data) => {
+					setArticles(data.articles);
+					console.log(data);
+				});
+	};
+
+	// useEffect(() => {
+	// 	(searchValue? searchArticles() : console.log("no search"));
+	// }, []);
 
 	return (
 		<div>
@@ -46,6 +62,9 @@ function SearchPage(props) {
 				/>
 				<input onClick={callSearchFunction} type="submit" value="SEARCH" />
     		</form>
+			<div>
+			{/* <button onClick={setArticles([])}></button> */}
+			</div>
 
 			{articles.map((article) => {
 				return (
