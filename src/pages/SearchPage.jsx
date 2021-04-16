@@ -63,7 +63,6 @@ const SearchPage = (props) => {
 				<input onClick={callSearchFunction} type="submit" value="SEARCH" />
     		</form>
 			<div>
-			{/* <button onClick={setArticles([])}></button> */}
 			</div>
 
 			{articles.map((article) => {
