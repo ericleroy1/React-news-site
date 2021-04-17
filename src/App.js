@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import firebase from "firebase";
+import firebase from "./firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+
 
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
@@ -10,11 +11,6 @@ import MyNewsPage from "./pages/MyNewsPage";
 import Navbar from "./components/Navbar";
 import "./components/Navbar.css";
 
-
-firebase.initializeApp({
-    apiKey:"AIzaSyBZBoN6p2_Ftm3WfREz_Rp_NPeauABcDLE",
-    authDomain:"react-news-site-acd3c.firebaseapp.com"
-})
 
 class App extends Component {
 
@@ -39,10 +35,17 @@ class App extends Component {
     }
 
     componentDidMount = ()=>{
+        if (!firebase.apps.length) {
+            firebase.initializeApp({});
+         }else {
+            firebase.app();
+         };
+
         firebase.auth().onAuthStateChanged(user =>{
             this.setState({isSignedIn: !!user})
             console.log();
-        })
+        });
+        
 
     }
 
