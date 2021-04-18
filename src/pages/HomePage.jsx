@@ -20,8 +20,6 @@ function HomePage() {
 			});
 	}, []);
 
-	console.log(articles);
-
 	return (
 		<div>
 			<h2 className="headline">Today's top stories</h2>

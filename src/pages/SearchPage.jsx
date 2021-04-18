@@ -24,7 +24,6 @@ const SearchPage = (props) => {
 	};
 
 
-
 	function searchValueFunction() {
 
 		fetch(`https://newsapi.org/v2/everything?q=${searchValue}&apiKey=39bd2d941e0d433e8f54efdd2e183dda`)
@@ -37,20 +36,6 @@ const SearchPage = (props) => {
 
 		  };
 
-	// function searchArticles(){
-	// 	fetch(`https://newsapi.org/v2/everything?q=${searchValue}&apiKey=39bd2d941e0d433e8f54efdd2e183dda`)
-	// 			.then((res) => {
-	// 				return res.json();
-	// 			})
-	// 			.then((data) => {
-	// 				setArticles(data.articles);
-	// 				console.log(data);
-	// 			});
-	// };
-
-	// useEffect(() => {
-	// 	(searchValue? searchArticles() : console.log("no search"));
-	// }, []);
 
 	return (
 		<div>
@@ -77,6 +62,7 @@ const SearchPage = (props) => {
 					/>
 				);
 			})}
+
 		</div>
 	)
 }
