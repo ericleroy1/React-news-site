@@ -4,13 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import firebase from "./firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
-
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
 import MyNewsPage from "./pages/MyNewsPage";
 import Navbar from "./components/Navbar";
 import "./components/Navbar.css";
 
+
+require("firebase/firestore");
 
 class App extends Component {
 

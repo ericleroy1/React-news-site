@@ -1,31 +1,30 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "./NewsItem.css";
 import firebase from "../firebase";
 
+
 function NewsItem(props) {
 
-let myNews = firebase.firestore().collection('articleCollection')
-console.log(myNews);
+const db = firebase.firestore()
 
-// function addArticle(){
-// 	db.collection("users").add({
-// 		first: "Ada",
-// 		last: "Lovelace",
-// 		born: 1815
-// 	})
-// 	.then((docRef) => {
-// 		console.log("Document written with ID: ", docRef.id);
-// 	})
-// 	.catch((error) => {
-// 		console.error("Error adding document: ", error);
-// 	});
-// }
-
+	function addArticle(){
+		db.collection(firebase.auth().currentUser.uid).doc(props.title).set({
+			picture: props.image,
+			title: props.title,
+			url: props.url,
+		})
+		.then(() => {
+			console.log("Document successfully written!");
+		})
+		.catch((error) => {
+			console.error("Error writing document: ", error);
+		});
+	}
 
 	return (
 		<Card style={{ width: "70%" }}>
-			<a href={props.url} target="_blank" style={{color: 'black'}}>
+			<a href={props.url} target="_blank" rel="noreferrer" style={{color: 'black'}}>
 			<div className="cardTop">
 			<Card.Img className="cardPic" variant="top" src={props.image}/>
 			<Card.Title className="cardTitle">{props.title}</Card.Title>
@@ -34,10 +33,10 @@ console.log(myNews);
 
 
 			<Card.Body>
-				<a rel="noopener noreferrer" href={props.url} target="_blank" style={{color: 'black'}}>
+				<a href={props.url} target="_blank" rel="noreferrer" style={{color: 'black'}}>
 				<Card.Text>{props.content}</Card.Text>
 				</a>
-				{/* <Button onClick={addArticle} variant="dark">Add to MyNews</Button> */}
+				<button onClick={addArticle}>Add to myNews</button>
 			</Card.Body>
 		</Card>
 	);
