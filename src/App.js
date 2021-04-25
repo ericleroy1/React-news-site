@@ -12,7 +12,6 @@ import "./components/Navbar.css";
 
 // Cloned repo
 
-
 require("firebase/firestore");
 
 class App extends Component {
@@ -22,7 +21,7 @@ class App extends Component {
         this.state = { apiResponse: "" };
     }
     
-    state = { isSignedIn: true}
+    state = { isSignedIn: true};
 
     uiConfig = {
         signInFlow: 'popup',
@@ -54,20 +53,6 @@ class App extends Component {
         });
       }
 
-    // componentDidMount = ()=>{
-    //     if (!firebase.apps.length) {
-    //         firebase.initializeApp({});
-    //      }else {
-    //         firebase.app();
-    //      };
-
-    //     firebase.auth().onAuthStateChanged(user =>{
-    //         this.setState({isSignedIn: !!user})
-    //         console.log();
-    //     });
-        
-
-    // }
 
     render() {
         return (
