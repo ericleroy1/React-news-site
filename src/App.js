@@ -35,22 +35,39 @@ class App extends Component {
         callbacks: {
             signInSuccess: () => false
         }
-    }
+    };
 
-    componentDidMount = ()=>{
+    componentDidMount() {
+
         if (!firebase.apps.length) {
             firebase.initializeApp({});
          }else {
             firebase.app();
          };
 
-        firebase.auth().onAuthStateChanged(user =>{
-            this.setState({isSignedIn: !!user})
-            console.log();
+        this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
+          this.setState({
+            loading: false,
+            user,
+          });
+          this.setState({isSignedIn: !!user})
         });
+      }
+
+    // componentDidMount = ()=>{
+    //     if (!firebase.apps.length) {
+    //         firebase.initializeApp({});
+    //      }else {
+    //         firebase.app();
+    //      };
+
+    //     firebase.auth().onAuthStateChanged(user =>{
+    //         this.setState({isSignedIn: !!user})
+    //         console.log();
+    //     });
         
 
-    }
+    // }
 
     render() {
         return (

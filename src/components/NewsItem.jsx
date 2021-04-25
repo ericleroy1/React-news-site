@@ -6,10 +6,11 @@ import firebase from "../firebase";
 
 function NewsItem(props) {
 
-const db = firebase.firestore()
+const db = firebase.firestore();
+const user = firebase.auth().currentUser.uid;
 
 	function addArticle(){
-		db.collection(firebase.auth().currentUser.uid).doc(props.title).set({
+		db.collection(user).doc(props.title).set({
 			picture: props.image,
 			title: props.title,
 			url: props.url,

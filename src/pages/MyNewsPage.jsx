@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import firebase from "../firebase";
-import NewsItem from "../components/NewsItem";
+import MyNewsItem from "../components/MyNewsItem";
+
 
 function MyNewsPage() {
 
@@ -9,6 +10,8 @@ function MyNewsPage() {
 
 	const [articles, setArticles] = useState([]);
 
+
+
 	function getItems(){
 
 		let articlesList = [];
@@ -16,10 +19,11 @@ function MyNewsPage() {
 		db.collection(user).get().then((querySnapshot) => {
 			querySnapshot.forEach((doc) => {
 				// doc.data() is never undefined for query doc snapshots
-				articlesList.push(doc.data().title)
+				articlesList.push(doc.data())
 			});
 		}).then(()=>{
-			setArticles(articlesList)
+			setArticles(articlesList);
+			console.log(user);
 		});
 	};
 
@@ -32,12 +36,10 @@ function MyNewsPage() {
 
 			{articles.map((article) => {
 				return (
-					<NewsItem
+					<MyNewsItem
 						key={article.url}
-						image={article.urlToImage}
+						image={article.picture}
 						title={article.title}
-						author={article.author}
-						content={article.content}
 						url={article.url}
 					/>
 				);
