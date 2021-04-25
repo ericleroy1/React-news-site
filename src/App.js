@@ -10,6 +10,8 @@ import MyNewsPage from "./pages/MyNewsPage";
 import Navbar from "./components/Navbar";
 import "./components/Navbar.css";
 
+// Cloned repo
+
 
 require("firebase/firestore");
 
