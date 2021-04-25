@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import firebase from "../firebase";
 import MyNewsItem from "../components/MyNewsItem";
 
@@ -7,6 +7,12 @@ function MyNewsPage() {
 
 	const db = firebase.firestore();
 	let user = firebase.auth().currentUser.uid
+
+	useEffect(()=> {
+		const db = firebase.firestore();
+		let user = firebase.auth().currentUser.uid
+	});
+	
 
 	const [articles, setArticles] = useState([]);
 
